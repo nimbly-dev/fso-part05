@@ -1,0 +1,11 @@
+POST http://localhost:3001/api/contacts/
+Content-type: application/json
+
+{
+    "name": "test12a3",
+    "number": "09-1234556",
+    
+}
+
+###
+GET http://localhost:3001/api/users/
