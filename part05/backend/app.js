@@ -17,7 +17,7 @@ morgan.token('body', (req) => JSON.stringify(req.body))
 app.use(morgan(':method :url :status - :res[content-length] :response-time ms :body'))
 app.use(middleware.getToken)
 //Router Controllers Here
-app.use('/api/contacts',middleware.getLoggedUser, contactRouter)
+app.use('/api/contacts', contactRouter)
 app.use('/api/blogs', middleware.getLoggedUser,blogRouter)
 app.use('/api/users', userRouter)
 app.use('/api/login', loginRouter)

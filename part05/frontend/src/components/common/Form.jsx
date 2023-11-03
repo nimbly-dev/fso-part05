@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const Form = ({ onSubmit,children }) => {
+const Form = ({ onSubmit,children,formName }) => {
 
     return(
         <>
-            <form onSubmit={onSubmit} name="phoneBookForm">
+            <form onSubmit={onSubmit} name={formName}>
                 {
                     children
                 }
@@ -20,6 +20,7 @@ const Form = ({ onSubmit,children }) => {
 Form.propTypes = {
     onSubmit: PropTypes.func.isRequired, // 'onSubmit' should be a function
     children: PropTypes.node.isRequired, // 'children' can be any valid React node
+    formName: PropTypes.string.isRequired, // 'children' can be any valid React node
 }
 
 export default Form
