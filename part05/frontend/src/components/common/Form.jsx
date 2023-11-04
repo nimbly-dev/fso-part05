@@ -5,12 +5,12 @@ const Form = ({ onSubmit,children,formName }) => {
 
     return(
         <>
-            <form onSubmit={onSubmit} name={formName}>
+            <form onSubmit={onSubmit} name={formName} className='form-container'>
                 {
                     children
                 }
                 <div>
-                    <button type="submit">Add</button>
+                    <button type="submit" className='form-submit-button'>Save blog</button>
                 </div>
             </form>
         </>
@@ -18,9 +18,9 @@ const Form = ({ onSubmit,children,formName }) => {
 }
 
 Form.propTypes = {
-    onSubmit: PropTypes.func.isRequired, // 'onSubmit' should be a function
-    children: PropTypes.node.isRequired, // 'children' can be any valid React node
-    formName: PropTypes.string.isRequired, // 'children' can be any valid React node
+    onSubmit: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired,
+    formName: PropTypes.string.isRequired,
 }
 
 export default Form

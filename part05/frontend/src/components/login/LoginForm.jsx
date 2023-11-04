@@ -49,7 +49,7 @@ const LoginForm = ({ setUser }) => {
 }
 
 LoginForm.propTypes = {
-    setUser: PropTypes.object
+    setUser: PropTypes.func
 }
 
 export default LoginForm

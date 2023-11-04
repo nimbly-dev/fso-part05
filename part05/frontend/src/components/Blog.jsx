@@ -46,7 +46,7 @@ const Blog = ({ loggedUser }) => {
     return(
         <>
             <Notification notification={notification}/>
-            <Togglable ref={blogFormRef} buttonLabel="new note">
+            <Togglable ref={blogFormRef} buttonLabel="new Blog">
                 <BlogForm loggedUser={loggedUser} setBlogs={setBlogs}/>
             </Togglable>
             <BlogList blogs={blogs} loggedUser={loggedUser} handleDelete={handleDelete} />

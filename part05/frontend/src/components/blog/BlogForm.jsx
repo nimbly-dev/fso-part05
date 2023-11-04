@@ -53,14 +53,25 @@ const BlogForm = ({ loggedUser, setBlogs }) => {
     }
 
     return(
-        <>
-            <Form onSubmit={handleSaveSubmit} formName="saveBlog" >
-                <InputField label={'Title'} value={newTitle} handleOnChange={({ target }) => setNewTitle(target.value)}/>
-                <InputField label={'Author'} value={newAuthor} handleOnChange={({ target }) => setNewAuthor(target.value)}/>
-                <InputField label={'URL'} value={newUrl} handleOnChange={({ target }) => setNewUrl(target.value)}/>
+        <div>
+            <Form onSubmit={handleSaveSubmit} formName="saveBlog">
+                <InputField
+                    label={'Title'}
+                    value={newTitle}
+                    handleOnChange={({ target }) => setNewTitle(target.value)}
+                />
+                <InputField
+                    label={'Author'}
+                    value={newAuthor}
+                    handleOnChange={({ target }) => setNewAuthor(target.value)}/>
+                <InputField
+                    label={'URL'}
+                    value={newUrl}
+                    handleOnChange={({ target }) => setNewUrl(target.value)}
+                />
             </Form>
             <Notification notification={notification}/>
-        </>
+        </div>
     )
 }
 BlogForm.propTypes = {
@@ -69,7 +80,7 @@ BlogForm.propTypes = {
         token: PropTypes.string.isRequired,
         username: PropTypes.string.isRequired,
     }).isRequired,
-    setBlogs: PropTypes.object,
+    setBlogs: PropTypes.func,
 }
 
 export default BlogForm
