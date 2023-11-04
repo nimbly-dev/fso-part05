@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import blogService from '../services/BlogService'
 import BlogList from './blog/BlogList'
@@ -6,10 +6,12 @@ import BlogList from './blog/BlogList'
 import '../assets/blogs/blogs.css'
 import BlogForm from './blog/BlogForm'
 import Notification from './common/Notification'
+import Togglable from './common/Togglable'
 
 const Blog = ({ loggedUser }) => {
     const [blogs, setBlogs] = useState([])
     const [notification, setNotification] = useState({})
+    const blogFormRef = useRef()
 
     useEffect(() => {
         blogService
@@ -44,7 +46,9 @@ const Blog = ({ loggedUser }) => {
     return(
         <>
             <Notification notification={notification}/>
-            <BlogForm loggedUser={loggedUser} setBlogs={setBlogs}/>
+            <Togglable ref={blogFormRef} buttonLabel="new note">
+                <BlogForm loggedUser={loggedUser} setBlogs={setBlogs}/>
+            </Togglable>
             <BlogList blogs={blogs} loggedUser={loggedUser} handleDelete={handleDelete} />
         </>
     )

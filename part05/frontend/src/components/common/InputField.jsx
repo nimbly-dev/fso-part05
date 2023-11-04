@@ -1,19 +1,20 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const InputField = ({ handleOnChange, label, value }) => {
+const InputField = ({ handleOnChange, label, value,  type }) => {
     return(
         <>
             <label htmlFor={label}>{label}</label>
-            <input id={label} value={value} onChange={handleOnChange} required/>
+            <input id={label} value={value} onChange={handleOnChange} type={!type ? 'text' : type} required/>
         </>
     )
 }
 
 InputField.propTypes = {
-    handleOnChange: PropTypes.func,
-    label: PropTypes.string,
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    handleOnChange: PropTypes.func.isRequired,
+    label: PropTypes.string.isRequired,
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    type: PropTypes.string,
 }
 
 export default InputField
