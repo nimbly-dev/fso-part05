@@ -28,7 +28,7 @@ const BlogDetail = ({ blog,handleDelete ,userToken, handleLike }) => {
                         <br/>
                     </>
                 </Togglable>
-                <button type='button' onClick={() => handleDelete(blog.id, userToken)}>Delete</button>
+                <button type='button' onClick={() => handleDelete(blog.id, blog.title)}>Delete</button>
             </div>
         </>
     )
