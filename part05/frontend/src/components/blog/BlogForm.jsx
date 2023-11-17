@@ -26,7 +26,7 @@ const BlogForm = ({ loggedUser, setBlogs }) => {
                 console.log('Returned data: {}', response)
                 setNotification({
                     message: `Success addition of ${response.data.title}`,
-                    type: 'notification success'
+                    type: 'success'
                 })
                 setTimeout(() => {
                     setNotification({})
@@ -44,7 +44,7 @@ const BlogForm = ({ loggedUser, setBlogs }) => {
                 console.log('Err: {}', err)
                 setNotification({
                     message: `${err.response.data.error}`,
-                    type: 'notification error'
+                    type: 'error'
                 })
                 setTimeout(() => {
                     setNotification({})
@@ -54,7 +54,7 @@ const BlogForm = ({ loggedUser, setBlogs }) => {
 
     return(
         <div>
-            <Form onSubmit={handleSaveSubmit} formName="saveBlog">
+            <Form onSubmit={handleSaveSubmit} formName="saveBlog" submitButtonLabel={'Save Blog'}>
                 <InputField
                     label={'Title'}
                     value={newTitle}

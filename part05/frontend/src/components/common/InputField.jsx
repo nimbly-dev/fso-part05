@@ -2,10 +2,20 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 const InputField = ({ handleOnChange, label, value,  type }) => {
+    const inputFieldStyles = {
+        formLabel: {
+            marginBottom: '5px',
+        },
+        formInput: {
+            marginBottom: '10px',
+            padding: '5px',
+        },
+    }
+
     return(
         <>
-            <label htmlFor={label} className='form-label'>{label}</label>:
-            <input id={label} value={value} onChange={handleOnChange} type={!type ? 'text' : type} className='form-input' required/>
+            <label htmlFor={label} style={inputFieldStyles.formLabel}>{label}</label>
+            <input id={label} value={value} onChange={handleOnChange} type={!type ? 'text' : type} style={inputFieldStyles.formInput} required/>
             <br/>
         </>
     )

@@ -5,12 +5,10 @@ import BlogList from './blog/BlogList'
 
 import '../assets/blogs/blogs.css'
 import BlogForm from './blog/BlogForm'
-import Notification from './common/Notification'
 import Togglable from './common/Togglable'
 
 const Blog = ({ loggedUser }) => {
     const [blogs, setBlogs] = useState([])
-    const [notification, setNotification] = useState({})
     const blogFormRef = useRef()
 
     useEffect(() => {
@@ -21,35 +19,12 @@ const Blog = ({ loggedUser }) => {
             })
     }, [])
 
-    const handleDelete = (id, title) => {
-        const deleteConfirmation = window.confirm(`Are you sure you want to delete ${title}?`)
-
-        if (deleteConfirmation) {
-            blogService
-                .deleteBlog(id,loggedUser.token)
-                .then(() => {
-                    setBlogs(blogs.filter(blog => blog.id !== id))
-                })
-                .catch(err => {
-                    console.log(err)
-                    setNotification({
-                        message: `${err.response.data.error}`,
-                        type: 'notification error'
-                    })
-                    setTimeout(() => {
-                        setNotification({})
-                    }, 5000)
-                })
-        }
-    }
-
     return(
         <>
-            <Notification notification={notification}/>
-            <Togglable ref={blogFormRef} buttonLabel="new Blog">
+            <Togglable ref={blogFormRef} showLabel="new Blog" hideLabel={'hide'}>
                 <BlogForm loggedUser={loggedUser} setBlogs={setBlogs}/>
             </Togglable>
-            <BlogList blogs={blogs} loggedUser={loggedUser} handleDelete={handleDelete} />
+            <BlogList blogs={blogs} loggedUser={loggedUser} setBlogs={setBlogs} />
         </>
     )
 }

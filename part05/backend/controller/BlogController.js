@@ -108,4 +108,46 @@ blogRouter.delete('/:id', async (request,response,next) => {
     }
 })
 
+//TODO: Create Testcase for this one
+blogRouter.post('/:id/like', async (request, response, next) => {
+    const blogId = request.params.id
+    const decodedToken = jwt.verify(request.token, process.env.SECRET)
+
+    if (!decodedToken.id) {
+        return response.status(401).json({ error: 'token invalid' })
+    }
+
+    const user = await User.findById(decodedToken.id)
+
+    const isLiked = user.likedBlogs.includes(blogId)
+
+    if (isLiked) {
+        user.likedBlogs = user.likedBlogs.filter(id => id.toString() !== blogId)
+        await user.save()
+
+        //Update blog like count
+        const blogResponse = await Blog.findByIdAndUpdate(
+            blogId,
+            { $inc: { likes: -1 } },
+            { new: true }
+        )
+
+        response.status(200).json(new ApiResponse(blogResponse)).end()
+    } else {
+        user.likedBlogs.push(blogId)
+        await user.save()
+
+        //Update blog like count
+        const blogResponse = await Blog.findByIdAndUpdate(
+            blogId,
+            { $inc: { likes: 1 } },
+            { new: true }
+        )
+
+        response.status(200).json(new ApiResponse(blogResponse)).end()
+    }
+
+})
+
+
 module.exports = blogRouter

@@ -38,7 +38,7 @@ const LoginForm = ({ setUser }) => {
 
     return(
         <>
-            <Form formName='login' onSubmit={handleLogin}>
+            <Form formName='login' onSubmit={handleLogin} submitButtonLabel={'Login'}>
                 <InputField label={'username'} value={username} handleOnChange={({ target }) => setUsername(target.value)}/>
                 <InputField label={'password'} value={password} handleOnChange={({ target }) => setPassword(target.value)} type={'password'}/>
             </Form>

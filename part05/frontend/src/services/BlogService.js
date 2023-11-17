@@ -1,10 +1,6 @@
 import axios from 'axios'
 const baseUrl = '/api/blogs'
 
-
-
-
-
 const getBlogs = (authToken) => {
     //Header to be used containg the Auth Bearer Token
     const config = {
@@ -43,5 +39,16 @@ const deleteBlog = (id,authToken) => {
     return request.then(response => response.data)
 }
 
+const likeBlog = (id,authToken) => {
+    //Header to be used containg the Auth Bearer Token
+    const config = {
+        headers: {
+            Authorization: `Bearer ${authToken}`,
+        },
+    }
+    const request = axios.post(`${baseUrl}/${id}/like`,'',config)
+    return request.then(response => response.data)
+}
 
-export default { getBlogs, saveBlog, deleteBlog }
+
+export default { getBlogs, saveBlog, deleteBlog, likeBlog }

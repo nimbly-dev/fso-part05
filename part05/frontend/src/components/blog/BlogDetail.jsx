@@ -1,18 +1,33 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
-const BlogDetail = ({ blog,handleDelete ,userToken }) => {
+import Togglable from '../common/Togglable'
+const BlogDetail = ({ blog,handleDelete ,userToken, handleLike }) => {
+    const blogStyle = {
+        paddingTop: 10,
+        paddingLeft: 2,
+        border: 'solid',
+        borderWidth: 1,
+        marginBottom: 5
+    }
+
+    const blogViewMoreDetailRef = useRef()
 
     return(
         <>
-            <div className='blog-detail' key={blog.id}>
-                <h3>Title: {blog.title}</h3>
-                <h3>Details: </h3>
-                <ul>
-                    <li>Author: {blog.author}</li>
-                    <li>URL: <a>{blog.url}</a></li>
-                    <li>Likes: {blog.likes}</li>
-                    <li>Created by: {blog.user.username}</li>
-                </ul>
+            <div style={blogStyle} key={blog.id}>
+                <h3>{blog.title}</h3>
+                <Togglable ref={blogViewMoreDetailRef} showLabel="show more" hideLabel={'hide'}>
+                    <>
+                        <h3>Details: </h3>
+                        <ul>
+                            <li>Author: {blog.author}</li>
+                            <li>Likes: {blog.likes}</li> <button onClick={() => handleLike(blog.id, userToken)}>Like</button>
+                            <li>Created by: {blog.user.username}</li>
+                        </ul>
+                        Link: <a>{blog.url}</a>
+                        <br/>
+                    </>
+                </Togglable>
                 <button type='button' onClick={() => handleDelete(blog.id, userToken)}>Delete</button>
             </div>
         </>
@@ -32,6 +47,7 @@ BlogDetail.propTypes = {
         id: PropTypes.string.isRequired,
     }).isRequired,
     handleDelete: PropTypes.func,
+    handleLike: PropTypes.func,
     userToken: PropTypes.string
 }
 export default BlogDetail

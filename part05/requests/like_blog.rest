@@ -1,0 +1,7 @@
+POST http://localhost:3001/api/blogs/654e42b14071d1ae117cd5f8/like
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QxMiIsImlkIjoiNjUzZjc2ZTE5NjJiYmI3NzM5ZWI5ZmMwIiwiaWF0IjoxNjk5NjgxMDg4LCJleHAiOjE2OTk2ODQ2ODh9.QLLQyybW8VcrouZRN7N6EAcG-IKFLEPZmqgyqOujHy8
+
+###
+GET http://localhost:3001/api/blogs/
+Authorization: Bearer 
